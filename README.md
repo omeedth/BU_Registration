@@ -15,4 +15,5 @@ This is not perfectly optomized yet so it will be finnicky.
     * http://selenium-python.readthedocs.io/installation.html
     
 3. Modify config.py
+![alt text](https://github.com/omeedth/BU_Registration/edit/master/config_py.png"config_py.png")
 
