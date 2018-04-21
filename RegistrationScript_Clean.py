@@ -377,7 +377,7 @@ def change():
     
 # Main
 
-driver = webdriver.Chrome('D:\Alexs_Stuff\Python Programs\webdrivers\chromedriver.exe')
+driver = webdriver.Chrome('chromedriver.exe')
 
 driver.implicitly_wait(.5) # seconds
 
