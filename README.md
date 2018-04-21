@@ -10,8 +10,9 @@ This is not perfectly optomized yet so it will be finnicky.
 2. Install Selenium
    * Install Selenium using pip
      * ``` pip install selenium ```
-   * Install the Chrome Web Driver Chromium
-     * https://sites.google.com/a/chromium.org/chromedriver/downloads
+     * pip is a python package installer! <br />
+     if you don't have it you should get it because it is useful!
+     https://pypi.org/project/pip/  
    * Additional Information:
      * http://selenium-python.readthedocs.io/installation.html
     
