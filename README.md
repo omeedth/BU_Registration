@@ -29,3 +29,8 @@ This is not perfectly optomized yet so it will be finnicky.
 
 # Additional Notes
 Please feel free to ask any questions or introduce any problems you would like to be addressed with the script
+
+# FAQ
+
+1. I followed the steps but nothing is happening when I run the script!
+    * Make sure you are running the installation of python that has Selenium installed 
