@@ -105,7 +105,7 @@ def advising_code():
 
         print('Incorrect Advising Code!\n\'Ctrl+C\' to quit program!')
 
-        driver.find_element_by_link_text('Back').click()     
+        driver.find_element_by_link_text('Back').click()
 
 def access_reg_options(choice):
     #1: plan
@@ -120,7 +120,7 @@ def access_reg_options(choice):
     if choice >= len(options) or choice < 1:
         print('No such option')
         return False
-        
+
     try:
         link = driver.find_element_by_link_text(options[choice])
         link.click()
@@ -136,7 +136,7 @@ def search_by_class_num():
     college = driver.find_element_by_name('College')    #Dropdown
     department = driver.find_element_by_name('Dept')    #text
     course = driver.find_element_by_name('Course')      #text
-    section = driver.find_element_by_name('Section')    #text    
+    section = driver.find_element_by_name('Section')    #text
 
     clg = str(input('Which college are you in: ').upper())
     dept = str(input('Which department do you want to search for: '))
@@ -145,7 +145,7 @@ def search_by_class_num():
 
     #option
     option = driver.find_element_by_xpath("//option[contains(text(), '%s')]" % clg)   #Option
-    
+
     #dropdown
     college.click()
     option.click()
@@ -162,7 +162,7 @@ def search_by_class_num():
     #search
     #go.click()
     college.submit()
-    
+
     return [clg,dept,crse,sect]
 
 def find_and_select_course(lst):
@@ -173,13 +173,13 @@ def find_and_select_course(lst):
     dept = lst[1]
     crse = lst[2]
     sect = lst[3]
-    
-    while 1:        
+
+    while 1:
 
         try:
-            
+
             sign_in()
-            
+
             academics = driver.find_element_by_css_selector("a img[alt='Academics']")
             academics.click()
             registration = driver.find_element_by_link_text('Registration')
@@ -187,12 +187,12 @@ def find_and_select_course(lst):
 
             #Registration Choices!
             print('Locating previous registration options...')
-            regop = get_reg_options()           
-              
+            regop = get_reg_options()
+
             for reg in regop:
                 if regchoice in reg.text:
-                    reg_choice = reg            
-                    break    
+                    reg_choice = reg
+                    break
 
             print('Registration Choice: ' + regchoice)
 
@@ -200,13 +200,13 @@ def find_and_select_course(lst):
 
             #Accessing reg options
             access_reg_options(chc)
-            
+
         except:
-            pass            
-        
+            pass
+
         try:
             classes = driver.find_elements_by_partial_link_text(clg.upper() + ' ' + dept.upper() + crse + ' ' + sect.upper())
-        
+
         except Exception:
             print('Couldn\'t Find Class!')
             break
@@ -218,7 +218,7 @@ def find_and_select_course(lst):
         for course in classes:
             #Class info
             tr = course.find_element_by_xpath('../..')
-            print('this tag is: ' + str(tr.text) + '\n')            
+            print('this tag is: ' + str(tr.text) + '\n')
             add_course = None
             try:
                 add_course = tr.find_element_by_tag_name('input')
@@ -227,7 +227,7 @@ def find_and_select_course(lst):
             title = tr.find_element_by_css_selector("td:nth-child(4)")
             open_seats = tr.find_element_by_css_selector("td:nth-child(6)")
             type_class = tr.find_element_by_css_selector("td:nth-child(8)")
-            
+
             print('\ntitle: ' + title.text)
             print('open seats: ' + open_seats.text)
             print('class type: ' + type_class.text)
@@ -257,7 +257,7 @@ def find_and_select_course(lst):
     accept_alert()
     old_course_information = None
     new_course_section = ''
-    
+
 
 def add_from_planner():
     # In Planner
@@ -306,7 +306,7 @@ def register():
 
 def drop():
     print('Not implemented!')
-    
+
 def change():
     print('Enter details of class you would like to change!\n')
     clg = str(input('Which college are you in: ').upper())
@@ -342,14 +342,14 @@ def change():
             registration.click()
 
             print('Locating previous registration options...')
-            
-            #Registration Choices!        
-            regop = get_reg_options()           
-              
+
+            #Registration Choices!
+            regop = get_reg_options()
+
             for reg in regop:
                 if regchoice in reg.text:
-                    reg_choice = reg            
-                    break    
+                    reg_choice = reg
+                    break
 
             print('Registration Choice: ' + regchoice)
 
@@ -360,21 +360,21 @@ def change():
 
             link = driver.find_element_by_link_text(clg.upper() + ' ' + dept.upper() + crse + ' ' + sect.upper())
             link.click()
-            
+
         except:
-            pass            
+            pass
 
         try:
             link = driver.find_element_by_link_text(clg.upper() + ' ' + dept.upper() + crse + ' ' + sect.upper())
             link.click()
             break
-        except:            
+        except:
             driver.refresh()
 
     accept_alert()
     old_course_information = None
     new_course_section = ''
-    
+
 # Main
 
 driver = webdriver.Chrome('chromedriver.exe')
@@ -383,9 +383,6 @@ driver.implicitly_wait(.5) # seconds
 
 driver.get('https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1519065025?ModuleName=menu.pl&NewMenu=Academics')
 
-registration_link = driver.find_element_by_link_text('Registration')
-registration_link.click()
-
 login = driver.find_element_by_tag_name('h1')
 
 if login != None:
@@ -393,6 +390,9 @@ if login != None:
     sign_in()
 
 print('Logged In!')
+
+registration_link = driver.find_element_by_link_text('Registration')
+registration_link.click()
 
 while 1:
 
@@ -423,7 +423,7 @@ while 1:
         if regchoice in reg.text:
             reg_choice = reg
             print('Found your selected register option!\n')
-            break    
+            break
 
     reg_choice.find_element_by_link_text('Reg Options').click()
 
