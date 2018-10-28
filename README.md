@@ -20,9 +20,17 @@ This is not perfectly optomized yet so it will be finnicky.
 ![config.py](https://github.com/omeedth/BU_Registration/blob/master/config_py.png)
     * Type in your Boston University login name and password for the two respective variables
 
+4. (Optional) Add to Path
+If you are on a Windows computer you can right click on the "SetupRegister.cmd" and "run as administrator".
+This will add this folder to the path for you! Alternatively you may get the path to the folder containing all of these files and add it yourself. Here is a link explaining how to add an environment PATH variable: https://docs.telerik.com/teststudio/features/test-runners/add-path-environment-variables
+
 # Running
 1. Open the file named "RegistrationScript_Clean.py"
 2. Follow the command prompt that is created
+
+# Alternative Run
+1. (Windows Only) Using Batch File
+You may run the "register.bat" script to run the program! (This will only work if you added this as a PATH variable)
 
 # Built With
 1. Selenium
