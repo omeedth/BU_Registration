@@ -121,14 +121,19 @@ def access_reg_options(choice):
         print('No such option')
         return False
 
-    try:
-        link = driver.find_element_by_link_text(options[choice])
-        link.click()
-    except:
-        print('Link Not Found!\nType in Advising Code...')
-        advising_code()
-        link = driver.find_element_by_link_text(options[choice])
-        link.click()
+    while True:
+        try:
+            link = driver.find_element_by_link_text(options[choice])
+            link.click()
+            break
+        except:
+            print('Link Not Found!\nType in Advising Code...')
+            advising_code()
+            try:
+                link = driver.find_element_by_link_text(options[choice])
+                link.click()
+            except:
+                pass
 
     return True
 
@@ -281,7 +286,18 @@ def plan():
     add.click()
     find_and_select_course(search_by_class_num())
 
-def register():
+def register(choice=0):
+
+    if choice == 2:
+        print("Refresh until add...")
+        done = False;
+        while(not done):
+            done = access_reg_options(2) # Register for class
+        try:
+            add_from_planner()
+        except:
+            print('Unable To Add From Planner!')
+        return
 
     while True:
         print('(1) Add from planner')
@@ -436,18 +452,26 @@ while 1:
         print('(2) Register for Class')
         print('(3) Drop Class')
         print('(4) Change Section')
+        print('(5) Refresh Until Register (Adds from planner)')
         choice = int(input('Please choose a link: '))
         chc = choice
 
-        if access_reg_options(choice):
-            if choice == 1:
-                plan()
-            elif choice == 2:
-                register()
-            elif choice == 3:
-                drop()
-            elif choice == 4:
-                change()
+        #print("choice: " + str(choice))
+        #print("choice: " + str(type(choice)))
+
+        if choice == 5:
+            register(2)
+            pass
+        else:
+            if access_reg_options(choice):
+                if choice == 1:
+                    plan()
+                elif choice == 2:
+                    register()
+                elif choice == 3:
+                    drop()
+                elif choice == 4:
+                    change()
 
         print('(1) Go Back to Registration Options')
         print('(2) Go Back to Registration - Current Schedule')
